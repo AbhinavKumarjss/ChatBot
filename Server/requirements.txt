@@ -1,0 +1,11 @@
+langchain
+langchain_pinecone
+pinecone
+langchain_openai
+openai
+python-dotenv
+fastapi
+uvicorn
+python-multipart
+beautifulsoup4
+elevenlabs
