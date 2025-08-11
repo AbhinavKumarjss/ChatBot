@@ -35,7 +35,7 @@ class LLM:
 ################################################
 ##              CONSTRUCTOR
 ################################################
-    def __init__(self, index_name: str = "default" ,model_name:str = "gpt-3.5-turbo"):
+    def __init__(self, index_name: str = "default" ,model_name:str = "gpt-4o"):
         if self.__class__._initialized:
             return
         print("------------------------- LLM Initialized ----------------------")
