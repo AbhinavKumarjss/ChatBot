@@ -53,7 +53,6 @@ const AdminDashboard = () => {
       const options = {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body:""
       };
       if (body) options.body = JSON.stringify(body);
       
