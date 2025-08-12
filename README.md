@@ -34,26 +34,23 @@ Built with **FastAPI**, **LangChain**, **OpenAI**, **Pinecone**, and real-time *
 Below is how **audio chunks** flow from microphone to AI response:
 
 ### 1️⃣ User Speaks
-- Microphone captures **raw PCM audio** via browser's Web Audio API.
-- Audio is split into **small chunks** (e.g., 20–50ms each).
+- Microphone captures **raw audio** via browser's Web Audio API.
+- Audio is converted to text via *Speech Recognition**.
 
-### 2️⃣ Chunks Sent to Backend
-- Each chunk is **streamed** to the FastAPI backend over **WebSocket**.
-- Chunks are added to an **audio buffer**.
-
-### 3️⃣ Transcription
-- The backend passes buffered chunks to **OpenAI Whisper** (or similar) in **real time**.
+### 2️⃣ Text Sent to Backend
+- Text is sent to the FastAPI backend over **WebSocket**.
 - Transcribed text is sent to the chatbot engine.
 
 ### 4️⃣ AI Response
 - **LangChain** queries:
   1. The scraped company data (stored in **Pinecone**).
   2. The **LLM** (OpenAI GPT).
-- The chatbot generates a **text response**.
-
-### 5️⃣ Voice Synthesis
-- The text is sent to **Text-to-Speech** (TTS) API.
-- TTS returns **PCM chunks** of speech audio.
+- The chatbot generates a **text response** in stream of tokens.
+  
+### 4️⃣ Audio Chunks Generation
+  1. To create human like voice Eleven labs api were used.
+  2. Tokens from OpenAI are buffered before sending to eleven labs
+  3. Stream of raw PCM audio chunks is returned which is sent to frontend
 
 ### 6️⃣ Smooth Playback
 - PCM chunks are buffered and scheduled **one after another** using the **AudioContext** API.
@@ -72,11 +69,11 @@ Below is how **audio chunks** flow from microphone to AI response:
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/voice-ai-chatbot.git
-cd voice-ai-chatbot
+git clone https://github.com/yourusername/chatbot.git
+cd chatbot
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Run FastAPI server
-uvicorn main:app --reload
+python server.py
