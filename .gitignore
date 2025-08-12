@@ -67,7 +67,6 @@ instance/
 
 # Scrapy stuff:
 .scrapy
-.env
 
 # Sphinx documentation
 docs/_build/
@@ -82,3 +81,5 @@ target/
 # IPython
 profile_default/
 ipython_config.py
+config.bat
+node_modules
